@@ -1,0 +1,9 @@
+{
+  "title": "Junior Python Backend Developer",
+  "department": "Engineering",
+  "description": "Build and maintain REST APIs using Python, SQL databases, testing, and version control.",
+  "responsibilities": "Develop endpoints, debug issues, write automated tests, and collaborate with engineers.",
+  "required_skills": ["python", "sql", "fastapi", "git"],
+  "preferred_skills": ["docker", "pytest", "aws"],
+  "min_experience": 0
+}

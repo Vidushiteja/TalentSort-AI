@@ -1,0 +1,6 @@
+import {NavLink, Outlet} from 'react-router-dom'
+import {LayoutDashboard, BriefcaseBusiness, Users, Upload, Settings, Sparkles, Clock3} from 'lucide-react'
+const links=[['/', 'Overview',LayoutDashboard],['/jobs','Job descriptions',BriefcaseBusiness],['/candidates','Candidates',Users],['/upload','Upload resumes',Upload],['/history','Screening history',Clock3],['/settings','Settings',Settings]] as const
+export default function Layout(){
+ return <div className="shell"><aside className="sidebar"><div className="brand"><span className="brand-icon"><Sparkles size={19}/></span><span>TalentSort <b>AI</b></span></div><div className="workspace-label">WORKSPACE</div><nav>{links.map(([to,label,Icon])=><NavLink key={to} to={to} end={to==='/'}><Icon size={18}/>{label}</NavLink>)}</nav><div className="sidebar-bottom"><div className="avatar">TS</div><div><b>Talent team</b><small>Recruiter workspace</small></div><span className="online-dot"/></div></aside><main className="main"><header className="topbar"><div><span className="breadcrumb">Workspace</span><span className="slash"> / </span><span>TalentSort AI</span></div><div className="top-actions"><span className="status-dot"/> Local workspace <div className="avatar small">TS</div></div></header><div className="content"><Outlet/></div></main></div>
+}

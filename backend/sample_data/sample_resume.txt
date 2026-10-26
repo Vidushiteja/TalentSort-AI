@@ -1,0 +1,14 @@
+Aarav Sharma
+aarav.sharma@example.com
+
+SUMMARY
+Junior backend developer with 1 year experience building APIs in Python and FastAPI.
+
+SKILLS
+Python, FastAPI, SQL, Git, pytest, REST API, Docker
+
+EDUCATION
+B.Tech in Computer Science, Example University
+
+PROJECTS
+Built a task management REST API with SQLite and automated tests.

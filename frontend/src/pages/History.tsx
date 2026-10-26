@@ -1,0 +1,8 @@
+import {useEffect,useState} from 'react'
+import {Clock3,FileSearch} from 'lucide-react'
+import {api} from '../services/api'
+import type {Job,Result} from '../types'
+export default function History(){const [jobs,setJobs]=useState<Job[]>([]),[jobId,setJobId]=useState(''),[rows,setRows]=useState<Result[]>([]),[error,setError]=useState('')
+ useEffect(()=>{api.jobs().then(j=>{setJobs(j);if(j.length)setJobId(String(j[0].id))}).catch(e=>setError(e.message))},[])
+ useEffect(()=>{if(jobId)api.results(Number(jobId)).then(r=>setRows(r.items)).catch(e=>setError(e.message))},[jobId])
+ return <><div className="page-heading"><div><div className="eyebrow">AUDIT TRAIL</div><h1>Screening history</h1><p>Review saved screening outcomes and timestamps by job.</p></div></div>{error&&<div className="alert">{error}</div>}<section className="panel"><div className="filter-bar"><div><h2>Processing history</h2><p>Screening outcomes are saved in the database.</p></div><select value={jobId} onChange={e=>setJobId(e.target.value)}>{jobs.map(j=><option key={j.id} value={j.id}>{j.title}</option>)}</select></div>{rows.length?rows.slice().sort((a,b)=>b.id-a.id).map(r=><div className="history-row" key={r.id}><span className="history-icon"><Clock3 size={17}/></span><div><b>{r.candidate_name}</b><small>{r.filename} · {new Date(r.created_at).toLocaleString()}</small></div><span className="score-pill">{r.score.toFixed(1)}% match</span><span className="status-label">{r.decision}</span></div>):<div className="empty-state"><FileSearch size={27}/><h3>No screening history</h3><p>Processed resumes will appear here.</p></div>}</section></>}
